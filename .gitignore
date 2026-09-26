@@ -1,0 +1,4 @@
+build/
+upstream/Src/usbd_desc-fixup.c
+.DS_Store
+*.swp
