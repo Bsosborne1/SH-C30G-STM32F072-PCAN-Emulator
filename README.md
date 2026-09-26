@@ -4,14 +4,24 @@ Community firmware work for the **DSD TECH SH-C30G** USB-CAN adapter using its *
 
 ## Current status
 
-The hardware-side STM32F072 build has been verified on an SH-C30G:
+The STM32F072 build and PCAN-facing USB interface have now been verified on an SH-C30G:
 
 - STM32F072 firmware builds successfully
 - firmware flashes successfully to the SH-C30G
 - the adapter enumerates over USB
 - the adapter's LEDs show activity
+- **Tesla Toolbox 2.1 detects the adapter as a PCAN device**
 
-The remaining item that still needs explicit hardware verification is final PEAK/PCAN driver compatibility using the descriptor override in this repository. Until that test is completed, treat this as **working SH-C30G STM32F072 firmware with PCAN-compatibility work in progress**, not as a fully validated drop-in PCAN replacement.
+### Tesla Toolbox 2.1 offline verification
+
+A direct unplugged/plugged comparison was performed in Tesla Toolbox 2.1:
+
+- with the SH-C30G unplugged, Toolbox reports **`No PCAN devices found.`**
+- with the programmed SH-C30G plugged in, that message disappears and Toolbox recognizes a PCAN interface
+
+This verifies the USB identity / PEAK PCAN API detection path well enough to confirm that Toolbox 2.1 recognizes the adapter as PCAN-compatible hardware.
+
+**Actual CAN transmit/receive communication through Tesla Toolbox has not yet been verified against a vehicle or a second CAN node.** That remains the final functional test before calling the adapter a fully validated drop-in replacement for this use case.
 
 ## Build
 
