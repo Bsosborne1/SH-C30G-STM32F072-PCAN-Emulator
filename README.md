@@ -11,17 +11,19 @@ The STM32F072 build and PCAN-facing USB interface have now been verified on an S
 - the adapter enumerates over USB
 - the adapter's LEDs show activity
 - **Tesla Toolbox 2.1 detects the adapter as a PCAN device**
+- **Live CAN communication with a Tesla vehicle through Toolbox 2.1 has been verified**
+- **Toolbox 2.1 successfully read and wrote DI `gateDriveErr` (DID `0x0307`) through the adapter**
 
-### Tesla Toolbox 2.1 offline verification
+### Tesla Toolbox 2.1 verification
 
 A direct unplugged/plugged comparison was performed in Tesla Toolbox 2.1:
 
 - with the SH-C30G unplugged, Toolbox reports **`No PCAN devices found.`**
 - with the programmed SH-C30G plugged in, that message disappears and Toolbox recognizes a PCAN interface
 
-This verifies the USB identity / PEAK PCAN API detection path well enough to confirm that Toolbox 2.1 recognizes the adapter as PCAN-compatible hardware.
+Live vehicle communication was then verified through Tesla Toolbox 2.1. Toolbox successfully accessed the drive inverter (DI), read `gateDriveErr` (DID `0x0307`), wrote the value to `0`, and received the expected positive UDS write response (`6E 03 07`). A subsequent read confirmed the value change.
 
-**Actual CAN transmit/receive communication through Tesla Toolbox has not yet been verified against a vehicle or a second CAN node.** That remains the final functional test before calling the adapter a fully validated drop-in replacement for this use case.
+This confirms that the firmware works with Tesla Toolbox 2.1 for actual CAN transmit/receive communication, not only PCAN device detection.
 
 ## Build
 
