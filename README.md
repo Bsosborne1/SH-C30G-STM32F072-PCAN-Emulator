@@ -13,6 +13,7 @@ The STM32F072 build and PCAN-facing USB interface have now been verified on an S
 - **Tesla Toolbox 2.1 detects the adapter as a PCAN device**
 - **Live CAN communication with a Tesla vehicle through Toolbox 2.1 has been verified**
 - **Toolbox 2.1 successfully read and wrote DI `gateDriveErr` (DID `0x0307`) through the adapter**
+- **PEAK PCAN-View can capture live CAN traffic through the adapter and save standard `.trc` trace files**
 
 ### Tesla Toolbox 2.1 verification
 
